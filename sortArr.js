@@ -27,26 +27,31 @@ const sortFunc = (alphabet) => {
 
 //func sort array input 
 const funcSort = async (arr) => {
-  let aphabet = 'ABCDRFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz*!@_.()[]#^&%-=+';
-  let arrNumber = []; // init arr number
-  let arrChar = []; // init arr char
-  //filter number && char
-  await arr.forEach((item) => {
-    if (Number(item)) {
-      arrNumber = [...arrNumber, item]; //item = number => push item in arrNumber
-    } else arrChar = [...arrChar, item]; //  => push in arrChar
-  });
+  try {
+    let aphabet = 'ABCDRFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz*!@_.()[]#^&%-=+';
+    let arrNumber = []; // init arr number
+    let arrChar = []; // init arr char
+    //filter number && char
+    await arr.forEach((item) => {
+      if (Number(item)) {
+        arrNumber = [...arrNumber, item]; //item = number => push item in arrNumber
+      } else arrChar = [...arrChar, item]; //  => push in arrChar
+    });
 
-  const sortArrNumber = await sortArrOfNumber(arrNumber);
-  const sortArrChar = await arrChar.sort(sortFunc(aphabet));
+    const sortArrNumber = await sortArrOfNumber(arrNumber);
+    const sortArrChar = await arrChar.sort(sortFunc(aphabet));
 
-  // run func sortArrNumber && sortArrChar
-  return Promise.all([
-    sortArrNumber, sortArrChar
-  ]).then(result => {
-    return resultAfterSort = [...result[0], ...result[1]];
-  })
-    .catch(console.log)
+    // run func sortArrNumber && sortArrChar
+    return Promise.all([
+      sortArrNumber, sortArrChar
+    ]).then(result => {
+      return resultAfterSort = [...result[0], ...result[1]];
+    })
+      .catch(console.log)
+  }
+  catch (error) {
+    console.log(error);
+  }
 }
 
 //array input
